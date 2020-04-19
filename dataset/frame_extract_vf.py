@@ -1,14 +1,14 @@
 import os 
 import cv2
 
-path  = "..\data\violentflows\movies"
+path  = "..\data\\violentflows\movies"
 
 
-os.mkdir("..\data\violentflows\extracted_frames")
-os.mkdir("..\data\violentflows\extracted_frames\yes")
-os.mkdir("..\data\violentflows\extracted_frames\ono")
+os.mkdir("..\data\\violentflows\extracted_frames")
+os.mkdir("..\data\\violentflows\extracted_frames\yes")
+os.mkdir("..\data\\violentflows\extracted_frames\ono")
 
-for i in range(0,5):
+for i in range(1,6):
     print("==================================" + str(i)+"==================================")
     no_path = os.path.join(os.path.join(path,str(i)),"NonViolence")
     yes_path = os.path.join(os.path.join(path,str(i)),"Violence")
@@ -18,7 +18,7 @@ for i in range(0,5):
 
     for k in range(0,len(yes)):
         print("yes===================" +str(k) )
-        folder_path = os.path.join("..\data\violentflows\extracted_frames\yes",str(i)+"__"+str(k))
+        folder_path = os.path.join("..\data\\violentflows\extracted_frames\yes",str(i)+"__"+str(k))
         os.mkdir(folder_path)
         vid_path  = os.path.join(yes_path,yes[k])
         cap = cv2.VideoCapture(vid_path)
@@ -42,7 +42,7 @@ for i in range(0,5):
 
     for k in range(0,len(no)):
         print("no===================" +str(k) )
-        folder_path = os.path.join("..\data\violentflows\extracted_frames\ono",str(i)+"__"+str(k))
+        folder_path = os.path.join("..\data\\violentflows\extracted_frames\ono",str(i)+"__"+str(k))
         os.mkdir(folder_path)
         vid_path  = os.path.join(no_path,yes[k])
         cap = cv2.VideoCapture(vid_path)
