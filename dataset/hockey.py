@@ -40,7 +40,6 @@ class Hockey:
                     if count > 41 :
                         break
                     video.append(frame)
-                    
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         break
                 else:
@@ -52,7 +51,7 @@ class Hockey:
         
         print("number of videos loaded: "+str(len(all)))
         x = np.array(all)
-
+        y =  np.array(y)
         return x, y
 
 
@@ -61,6 +60,11 @@ class Hockey:
 h = Hockey()
 x,y = h.load_data()
 
+print(x.shape)
+print(y.shape)
 
+y.reshape(1000,1)
+print(y.shape)
 
-
+x.reshape(1000,41,288,360,3)
+print(x.shape)
