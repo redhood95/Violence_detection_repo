@@ -42,6 +42,24 @@ for i in range(0,5):
 
     for k in range(0,len(no)):
         print("no===================" +str(k) )
+        folder_path = os.path.join("..\data\violentflows\extracted_frames\ono",str(i)+"__"+str(k))
+        os.mkdir(folder_path)
+        vid_path  = os.path.join(no_path,yes[k])
+        cap = cv2.VideoCapture(vid_path)
+        count = 0
+        while(cap.isOpened()):
+            ret, frame = cap.read()
+            
+            if ret == True:
+                count = count + 1
+                image_path = os.path.join(folder_path,str(count))
+                cv2.imwrite(image_path+".png",frame)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+            else:
+                break
+        print("number of frames extracted :"+str(count))
+        cap.release()
 
 
 
