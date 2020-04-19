@@ -44,7 +44,7 @@ for i in range(1,6):
         print("no===================" +str(k) )
         folder_path = os.path.join("..\data\\violentflows\extracted_frames\ono",str(i)+"__"+str(k))
         os.mkdir(folder_path)
-        vid_path  = os.path.join(no_path,yes[k])
+        vid_path  = os.path.join(no_path,no[k])
         cap = cv2.VideoCapture(vid_path)
         count = 0
         while(cap.isOpened()):
