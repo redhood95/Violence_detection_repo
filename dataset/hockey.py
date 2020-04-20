@@ -22,6 +22,7 @@ for category in H_list:
         for frame_num in range(1,len(frames)-1):
             #load frame 1#
             frame1 = cv2.imread(frame_path+"\\"+str(frame_num)+".png")
+            frame1 = cv2.resize(frame1,(250,350))
             vid.append(frame1)
         empty = np.zeros_like(frame1)
         for i in range(num_frames_present,50):
@@ -41,7 +42,7 @@ print('original sequence loaded')
 
 ## doing some data Augmentatation
 
-#loading original sequence
+#loading  sequence with gaussian blur
 for category in H_list:
     print(category)
     frame_folders = os.listdir(os.path.join(Hockey_path,category))
@@ -54,6 +55,7 @@ for category in H_list:
         for frame_num in range(1,len(frames)-1):
             #load frame 1#
             frame1 = cv2.imread(frame_path+"\\"+str(frame_num)+".png")
+            frame1 = cv.GaussianBlur(cv2.resize(frame1,(250,350)),(5,5),0)
             vid.append(frame1)
         empty = np.zeros_like(frame1)
         for i in range(num_frames_present,50):
