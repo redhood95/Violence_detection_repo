@@ -16,10 +16,9 @@ class Hockey_data:
 
         #loading original sequence
         for category in H_list:
-            print(category)
+
             frame_folders = os.listdir(os.path.join(Hockey_path,category))
             for seq in frame_folders:
-                print(seq)
                 frame_path = os.path.join(os.path.join(Hockey_path,category),seq)
                 frames = os.listdir(frame_path)
                 num_frames_present = len(frames)
@@ -33,15 +32,11 @@ class Hockey_data:
                 for i in range(num_frames_present,50):
                     vid.append(empty)
 
-                print(len(vid))
-                if category == 'ono':
-                    print(category)
-                    N_Vids.append(vid)
-                    print('vid added')
+                
+                if category == 'ono':                    
+                    N_Vids.append(vid)                    
                 elif category == 'yes':
-                    print(category)
                     Y_Vids.append(vid)
-                    print('vid added')
 
         print('original sequence loaded')
 
@@ -49,10 +44,8 @@ class Hockey_data:
 
         #loading  sequence with gaussian blur
         for category in H_list:
-            print(category)
             frame_folders = os.listdir(os.path.join(Hockey_path,category))
             for seq in frame_folders:
-                print(seq)
                 frame_path = os.path.join(os.path.join(Hockey_path,category),seq)
                 frames = os.listdir(frame_path)
                 num_frames_present = len(frames)
@@ -65,16 +58,10 @@ class Hockey_data:
                 empty = np.zeros_like(frame1)
                 for i in range(num_frames_present,50):
                     vid.append(empty)
-
-                print(len(vid))
                 if category == 'ono':
-                    print(category)
                     N_Vids.append(vid)
-                    print('vid added')
                 elif category == 'yes':
-                    print(category)
                     Y_Vids.append(vid)
-                    print('vid added')
 
         print('Gaussian sequence loaded')
 
