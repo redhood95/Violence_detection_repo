@@ -81,4 +81,6 @@ class Hockey_data:
         y_array = np.array(Y_Vids)
         n_array = np.array(N_Vids)
 
+        return y_array,n_array
+
         
