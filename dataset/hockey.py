@@ -6,7 +6,7 @@ import numpy as np
 Hockey_path  = "..\data\HockeyFights\extracted_frames"
 
 H_list  = os.listdir(Hockey_path)
-Y_vids = []
+Y_Vids = []
 N_Vids = []
 for category in H_list:
     print(category)
