@@ -3,6 +3,7 @@ import random
 import cv2 
 import numpy as np 
 from dataset.hockey import Hockey_data
+from sklearn.model_selection import train_test_split
 
 
 Hockey = Hockey_data()
@@ -24,3 +25,10 @@ for i in range(0,len(All_vids)):
 anno = np.array(anno)
 
 
+train_x , x , train_y , y = train_test_split(All_vids , anno , 
+                                            test_size = 0.2 ,
+                                            random_state = 111)
+
+eval_x , test_x , eval_y , test_y = train_test_split(x , y , 
+                                                    test_size = 0.5 , 
+                                                    random_state = 111)
