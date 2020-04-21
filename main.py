@@ -3,32 +3,23 @@ import random
 import cv2 
 import numpy as np 
 from dataset.hockey import Hockey_data
-from sklearn.model_selection import train_test_split
+
 
 
 Hockey = Hockey_data()
 
-positvies, negatives = Hockey.load_data("data\HockeyFights\extracted_frames")
-
-All_vids = np.concatenate(positvies,negatives)
-
-#generating annotation
-
-anno = []
-
-for i in range(0,len(All_vids)):
-    if i < (len(All_vids)/2):
-        append(1)
-    else :
-        append(0)
-
-anno = np.array(anno)
+train_x , train_y,eval_x , eval_y, test_x  , test_y = Hockey.load_data("data\HockeyFights\extracted_frames")
 
 
-train_x , x , train_y , y = train_test_split(All_vids , anno , 
-                                            test_size = 0.2 ,
-                                            random_state = 111)
-
-eval_x , test_x , eval_y , test_y = train_test_split(x , y , 
-                                                    test_size = 0.5 , 
-                                                    random_state = 111)
+print(train_x.shape)
+print(train_y.shape)
+print(eval_x.shape)
+print(eval_y.shape)
+print(test_x.shape)
+print(test_y.shape)
+print(len(train_x))
+print(len(train_y))
+print(len(eval_x))
+print(len(eval_y))
+print(len(test_x))
+print(len(test_y))
