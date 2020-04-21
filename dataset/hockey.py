@@ -74,9 +74,9 @@ class Hockey_data:
 
         for i in range(0,len(All_vids)):
             if i < (len(All_vids)/2):
-                append(0)
+                anno.append(0)
             else :
-                append(1)
+                anno.append(1)
 
         anno = np.array(anno)
 
