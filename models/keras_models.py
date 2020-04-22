@@ -84,7 +84,7 @@ class ResearchModels():
 
         # first (non-default) block
         model.add(TimeDistributed(Conv2D(32, (7, 7), strides=(2, 2), padding='same',
-                                         kernel_initializer=initialiser, kernel_regularizer=L2_regularizers.l2reg(l=reg_lambda)),
+                                         kernel_initializer=initialiser, kernel_regularizer=regularizers.l2(l=reg_lambda)),
                                   input_shape=self.input_shape))
         model.add(TimeDistributed(BatchNormalization()))
         model.add(TimeDistributed(Activation('relu')))
