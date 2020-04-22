@@ -53,17 +53,22 @@ class Train_using_keras:
         with open("saved_models/lrcn_10_v1.json", "w") as json_file:
             json_file.write(model_json)
         # serialize weights to HDF5
-        model.save_weights("saved_models/lrcn_10_v1.h5")
+        m.model.save_weights("saved_models/lrcn_10_v1.h5")
         print("Saved model to disk")
 
+        
+    def test(self,Path_to_model=None,Path_to_weights=None,X_test=None):
+
         # load json and create model
-        json_file = open('saved_models/lrcn_10_v1.json', 'r')
+        json_file = open(Path_to_model, 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         loaded_model = model_from_json(loaded_model_json)
         # load weights into new model
-        loaded_model.load_weights("saved_models/lrcn_10_v1.h5")
+        loaded_model.load_weights(Path_to_weights)
         print("Loaded model from disk")
+
+        return loaded_model.predict(X_test)
 
 
 

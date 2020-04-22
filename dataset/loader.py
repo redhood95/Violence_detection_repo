@@ -36,6 +36,5 @@ class Load:
 
         train_y = to_categorical(train_y)
         eval_y = to_categorical(eval_y)
-        test_y = to_categorical(test_y)
 
         return train_x , train_y,eval_x , eval_y, test_x  , test_y
