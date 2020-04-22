@@ -41,7 +41,7 @@ class Train_using_keras:
         rm.model.fit(
             X,
             Y,
-            batch_size=batch_size,
+            batch_size=batch_size,  
             validation_data=(X_eval, Y_eval),
             verbose=1,
             callbacks=[tb, early_stopper, csv_logger],

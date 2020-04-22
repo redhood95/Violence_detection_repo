@@ -6,7 +6,7 @@ import numpy as np
 warnings.filterwarnings("ignore")
 sys.path.insert(1, 'D:\\res2020\Computer_Vision\\violence_detect\\root')
 from sklearn.preprocessing import OneHotEncoder
-
+from keras.utils import to_categorical
 from dataset.hockey import Hockey_data
 
 class Load:
@@ -32,9 +32,10 @@ class Load:
             np.save("arrays_dump/eval_y.npy",eval_y)
             np.save("arrays_dump/test_x.npy",test_x)
             np.save("arrays_dump/test_y.npy",test_y)
+            print('arrays saved')
 
-        onehot_encoder = OneHotEncoder(sparse=False)
-        train_y = onehot_encoder.fit_transform(train_y)
-        test_y = onehot_encoder.fit_transform(test_y)
-        eval_y = onehot_encoder.fit_transform(eval_y)
+        train_y = to_categorical(train_y)
+        eval_y = to_categorical(eval_y)
+        test_y = to_categorical(test_y)
+
         return train_x , train_y,eval_x , eval_y, test_x  , test_y

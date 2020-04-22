@@ -27,7 +27,7 @@ class Hockey_data:
                 for frame_num in range(1,len(frames)-1):
                     #load frame 1#
                     frame1 = cv2.imread(frame_path+"\\"+str(frame_num)+".png")
-                    frame1 = cv2.resize(frame1,(150,250))
+                    frame1 = cv2.resize(frame1,(50,100))
                     vid.append(frame1)
                 empty = np.zeros_like(frame1)
                 for i in range(num_frames_present,50):

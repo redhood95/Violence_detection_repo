@@ -12,7 +12,7 @@ import sys
 
 class ResearchModels():
     def __init__(self, nb_classes, model, seq_length,
-                 saved_model=None, features_length=2048):
+                 saved_model=None, features_length=1024):
 
         # Set defaults.
         self.seq_length = seq_length
@@ -34,7 +34,7 @@ class ResearchModels():
             self.model = self.lstm()
         elif model == 'lrcn':
             print("Loading CNN-LSTM model.")
-            self.input_shape = (seq_length, 80, 80, 3)
+            self.input_shape = (seq_length, 100, 50, 3)
             self.model = self.lrcn()
 
         # Now compile the network.
@@ -63,10 +63,10 @@ class ResearchModels():
         def add_default_block(model, kernel_filters, init, reg_lambda):
 
             # conv
-            model.add(TimeDistributed(Conv2D(kernel_filters, (3, 3), padding='same',
-                                             kernel_initializer=init, kernel_regularizer=regularizers.l2(l=reg_lambda))))
-            model.add(TimeDistributed(BatchNormalization()))
-            model.add(TimeDistributed(Activation('relu')))
+            # model.add(TimeDistributed(Conv2D(kernel_filters, (3, 3), padding='same',
+            #                                  kernel_initializer=init, kernel_regularizer=regularizers.l2(l=reg_lambda))))
+            # model.add(TimeDistributed(BatchNormalization()))
+            # model.add(TimeDistributed(Activation('relu')))
             # conv
             model.add(TimeDistributed(Conv2D(kernel_filters, (3, 3), padding='same',
                                              kernel_initializer=init, kernel_regularizer=regularizers.l2(l=reg_lambda))))
@@ -88,20 +88,20 @@ class ResearchModels():
                                   input_shape=self.input_shape))
         model.add(TimeDistributed(BatchNormalization()))
         model.add(TimeDistributed(Activation('relu')))
-        model.add(TimeDistributed(Conv2D(32, (3,3), kernel_initializer=initialiser, kernel_regularizer=regularizers.l2(l=reg_lambda))))
-        model.add(TimeDistributed(BatchNormalization()))
-        model.add(TimeDistributed(Activation('relu')))
-        model.add(TimeDistributed(MaxPooling2D((2, 2), strides=(2, 2))))
+        # model.add(TimeDistributed(Conv2D(32, (3,3), kernel_initializer=initialiser, kernel_regularizer=regularizers.l2(l=reg_lambda))))
+        # model.add(TimeDistributed(BatchNormalization()))
+        # model.add(TimeDistributed(Activation('relu')))
+        # model.add(TimeDistributed(MaxPooling2D((2, 2), strides=(2, 2))))
 
         # 2nd-5th (default) blocks
         model = add_default_block(model, 64,  init=initialiser, reg_lambda=reg_lambda)
-        model = add_default_block(model, 128, init=initialiser, reg_lambda=reg_lambda)
-        model = add_default_block(model, 256, init=initialiser, reg_lambda=reg_lambda)
-        model = add_default_block(model, 512, init=initialiser, reg_lambda=reg_lambda)
+        # model = add_default_block(model, 128, init=initialiser, reg_lambda=reg_lambda)
+        # model = add_default_block(model, 256, init=initialiser, reg_lambda=reg_lambda)
+        # model = add_default_block(model, 512, init=initialiser, reg_lambda=reg_lambda)
 
         # LSTM output head
         model.add(TimeDistributed(Flatten()))
-        model.add(LSTM(256, return_sequences=False, dropout=0.5))
+        model.add(LSTM(128, return_sequences=False, dropout=0.5))
         model.add(Dense(self.nb_classes, activation='softmax'))
 
         return model
