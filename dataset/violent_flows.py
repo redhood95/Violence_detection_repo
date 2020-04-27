@@ -11,9 +11,10 @@ class Violent_flows:
         All_vids = []
         #loading original sequence
         for category in v_list:
-
+            print(category)
             frame_folders = os.listdir(os.path.join(path,category))
             for seq in frame_folders:
+                print(seq)
                 frame_path = os.path.join(os.path.join(path,category),seq)
                 frames = os.listdir(frame_path)
                 num_frames_present = len(frames)
@@ -52,3 +53,8 @@ class Violent_flows:
                                                             random_state = 324)
 
         return train_x,train_y,eval_x  , eval_y, test_x , test_y
+
+
+vf = Violent_flows()
+
+vf.load_data('../data/violentflows/extracted_frames')
