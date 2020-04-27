@@ -95,11 +95,11 @@ class Models():
         model.add(Conv3D(128, (3,3,3), activation='relu'))
         model.add(MaxPooling3D(pool_size=(1, 2, 2), strides=(1, 2, 2)))
         model.add(Dropout(0.7))
-        model.add(Conv3D(256, (1,1,1), activation='relu'))
-        model.add(Conv3D(256, (1,1,1), activation='relu'))
+        model.add(Conv3D(64, (1,1,1), activation='relu'))
+        model.add(Conv3D(64, (1,1,1), activation='relu'))
 
         model.add(Flatten())
-        # model.add(Dense(128))
+        model.add(Dense(128))
         model.add(Dropout(0.7))
         model.add(Dense(self.nb_classes, activation='softmax'))
 
